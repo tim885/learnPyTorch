@@ -64,7 +64,6 @@ parser.add_argument('--gpu', default=None, type=int,
 
 best_prec1 = 0
 
-
 def main():
     global args, best_prec1
     args = parser.parse_args()
@@ -181,7 +180,7 @@ def main():
         # evaluate on validation set
         prec1 = validate(val_loader, model, criterion)
 
-        # remember best prec@1 and save checkpoint
+        # remember best prec1 and save checkpoint
         is_best = prec1 > best_prec1
         best_prec1 = max(prec1, best_prec1)
         save_checkpoint({
@@ -194,7 +193,7 @@ def main():
 
 
 def train(train_loader, model, criterion, optimizer, epoch):
-    batch_time = AverageMeter()
+    batch_time = AverageMeter()  # class instance
     data_time = AverageMeter()
     losses = AverageMeter()
     top1 = AverageMeter()
